@@ -18,9 +18,7 @@ import org.cshou.zk.intl.SyncPrimitive;
 public class Barrier extends SyncPrimitive {
 
 	protected int size = 0;
-	
-	protected String root = null;
-	
+		
 	protected ContinuePolicy addPolicy = null;
 	
 	protected ContinuePolicy removePolicy = null;
@@ -35,7 +33,7 @@ public class Barrier extends SyncPrimitive {
 	}
 
 	@Override
-	public boolean add (String name) throws KeeperException, InterruptedException {
+	public boolean add (String name, Object value) throws KeeperException, InterruptedException {
 		
 		zk.create(root + "/" + name, new byte[0], Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
 		

@@ -15,6 +15,7 @@ import org.apache.zookeeper.ZooKeeper;
 public abstract class SyncPrimitive implements Watcher {
 
 	protected ZooKeeper zk = null;
+	protected String root = null;
 	protected Boolean mutex;
 
 	
@@ -25,7 +26,7 @@ public abstract class SyncPrimitive implements Watcher {
 		}
 	}
 	
-	public abstract boolean add (String name) throws KeeperException, InterruptedException;
+	public abstract boolean add (String name, Object value) throws KeeperException, InterruptedException;
 	
 	public abstract boolean remove (String name) throws KeeperException, InterruptedException;
 
