@@ -25,7 +25,7 @@ import org.cshou.zk.intl.SyncPrimitive;
  */
 public class FifoQueue extends SyncPrimitive {
 
-	protected QueueHandler handler = null;
+	private QueueHandler handler = null;
 	
 	protected boolean returnable = false;
 	
@@ -35,7 +35,7 @@ public class FifoQueue extends SyncPrimitive {
 			boolean returnable, boolean oneTime) {
 		this.zk = zk;
 		this.root = root;
-		this.handler = handler;
+		this.setHandler(handler);
 		this.returnable = returnable;
 		this.oneTime = oneTime;
 	}
@@ -111,7 +111,7 @@ public class FifoQueue extends SyncPrimitive {
 						}
 					}
 					
-					this.handler.process(object);
+					this.getHandler().process(object);
 					
 					if (this.oneTime)
 						return true;
@@ -130,6 +130,14 @@ public class FifoQueue extends SyncPrimitive {
 	
 	public void setReturnable (boolean flag) {
 		this.returnable = flag;
+	}
+
+	public QueueHandler getHandler() {
+		return handler;
+	}
+
+	public void setHandler(QueueHandler handler) {
+		this.handler = handler;
 	}
 
 }
